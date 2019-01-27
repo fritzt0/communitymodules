@@ -31,7 +31,14 @@ else:
 myctx = None
 myTestDirPath = None
 
-def mayRunTest ():
+def mayRunTest (verbose=False):
+  if verbose:
+    if sys.platform != 'darwin':
+      Logging.info('Test is only supported on macOS.')
+    if not MLAB.hasVariable('TESTCENTER_EXTERNAL_DATA_FME'):
+      Logging.info('Variable TESTCENTER_EXTERNAL_DATA_FME could not be expanded. Please define it in your .prefs file.')
+    if not MLABFileManager.macGetApplicationForId(kAppBundleId):
+      Logging.info('App with id %s is not registered or does not exist.' % kAppBundleId)
   return (sys.platform == 'darwin') and MLAB.hasVariable('TESTCENTER_EXTERNAL_DATA_FME') and MLABFileManager.macGetApplicationForId(kAppBundleId)
 
 def execute (command, wait=True):
@@ -60,8 +67,7 @@ class OsiriXXMLRPCThread (Thread):
 def setUpTestCase ():
   global myctx, myTestDirPath
   
-  if not mayRunTest():
-    Logging.info('Test is not allowed to run')
+  if not mayRunTest(True):
     return
   
   if not socket.gethostname().startswith(('fritter-pc.', 'fritter-nb.')):

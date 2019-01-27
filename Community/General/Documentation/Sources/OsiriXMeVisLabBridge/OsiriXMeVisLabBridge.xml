@@ -5,7 +5,7 @@
 
 <?Fm Validation Off?>
 
-<!ENTITY MeVisLabVer "3.1">
+<!ENTITY MeVisLabVer "3.2">
 
 <!-- End Document Specific Declarations -->
 
@@ -149,7 +149,7 @@ DirectDicomImport. As a convenience to the user, the OsiriXDirectDicomImport
 macro module already provides this configuration.</para>
 <para>The DirectDicomImport mode does not require the conversion
 step outlined in the Direct Dicom Import or Conversion? section.
-Starting with MeVisLab 2.2 the conversion if off by default in the
+Starting with MeVisLab 2.2 the conversion is off by default in the
 OsiriXBridge module panel (<xref linkend = "CACDFJIE" role = "Figure"/>).</para>
 <figure id = "CACDFJIE"><title>Example network of the OsiriXBridge
 module using a DirectDicomImport module to load the DICOM data directly

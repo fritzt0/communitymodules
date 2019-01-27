@@ -171,8 +171,8 @@ Window {
           }
         }
       }
-      Vertical { margin = 0 expandY=Yes visibleOn="!useEatDicom"
-        HyperLabel {
+      Vertical { margin = 15 expandY=Yes visibleOn="!useEatDicom"
+        HyperLabel { alignY = Top
           title = "Advanced conversion settings are only available if conversion of DICOM slices into a MeVisLab DICOM dataset is enabled."
         }
       }

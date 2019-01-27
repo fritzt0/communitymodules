@@ -14,7 +14,6 @@
 #include <Scripting/mlabScriptSignalHandler.h>
 #if defined(MACOS)
 # include "mlabOsiriXBridgeWindowDelegate.h"
-# include <macObjectiveAutoreleasePool.h>
 #endif
 
 

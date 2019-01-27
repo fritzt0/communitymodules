@@ -33,7 +33,7 @@ HEADERS += \
 SOURCES += \
     MLOsiriXBridgeInit.cpp
 
-macx {
+macos {
 
 HEADERS += \
     mlOsiriXBridge_p.h \

@@ -90,7 +90,6 @@ module View2D {
     maxPrecision = 4
     enableSlicing = TRUE
     useRelativeLUTIfNoInputImage = TRUE
-    hiResRendering = TRUE
   }
 }
 module DirectDicomImport {
@@ -436,6 +435,7 @@ module DicomTool {
     echoDebug = FALSE
     storeVerbose = TRUE
     storeDebug = FALSE
+    usedToolSelector = dcmSend
     currentConfigSet = OsiriX
     dicomName = OsiriX
     dicomType = PACS

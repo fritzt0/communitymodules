@@ -11,7 +11,6 @@
 #import "mlabOsiriXBridgeControl.h"
 #import "OsiriXPasteboardMime.h"
 #import <mlOsiriXServices.h>
-#import <macObjectiveAutoreleasePool.h>
 #import <QtGui>
 
 
@@ -165,41 +164,43 @@ MLABOsiriXBridgeWindowDelegate::dropEvent(QDropEvent *event)
     QList<QUrl> urlList = event->mimeData()->urls();
     
     if (! urlList.isEmpty() && QFileInfo(urlList.first().toLocalFile()).exists()) {
-      macos::ObjectiveAutoreleasePool pool;
-      
-      NSDictionary *info;
-      @try {
-        info = [_p->osirixServices seriesInfoOfViewerDisplayingImageSeriesWithFilename:[NSString stringWithUTF8String:urlList.first().toLocalFile().toUtf8().constData()]];
-      }
-      @catch (NSException *e) {
-        NSLog (@"Exception in MLABOsiriXBridgeWindowDelegate::dropEvent():\nname: %@\nreason: %@", [e name], [e reason]);
-        
-        info = nil;
-      }
-      @catch (id e) {
-        NSLog (@"Unknown exception in MLABOsiriXBridgeWindowDelegate::dropEvent()");
-        
-        info = nil;
-      }
-      
-      if (info) {
-        NSArray *images = [info objectForKey:@"series"];
-        int curImage = [[info objectForKey:@"curImage"] intValue];
-        float curImageWL = [[info objectForKey:@"curImageWL"] floatValue];
-        float curImageWW = [[info objectForKey:@"curImageWW"] floatValue];
-        
-        QStringList imgList;
-        for (NSString *filename in images) {
-          imgList << [filename UTF8String];
+      @autoreleasepool {
+
+        NSDictionary *info;
+        @try {
+          info = [_p->osirixServices seriesInfoOfViewerDisplayingImageSeriesWithFilename:[NSString stringWithUTF8String:urlList.first().toLocalFile().toUtf8().constData()]];
         }
-        
-        QMap<QString, QVariant> dict;
-        dict["series"] = QVariant(imgList);
-        dict["curImage"] = QVariant(curImage);
-        dict["curImageWL"] = QVariant(curImageWL);
-        dict["curImageWW"] = QVariant(curImageWW);
-        
-        _control->emitSeriesDropped(QVariant(dict));
+        @catch (NSException *e) {
+          NSLog (@"Exception in MLABOsiriXBridgeWindowDelegate::dropEvent():\nname: %@\nreason: %@", [e name], [e reason]);
+
+          info = nil;
+        }
+        @catch (id e) {
+          NSLog (@"Unknown exception in MLABOsiriXBridgeWindowDelegate::dropEvent()");
+
+          info = nil;
+        }
+
+        if (info) {
+          NSArray *images = [info objectForKey:@"series"];
+          int curImage = [[info objectForKey:@"curImage"] intValue];
+          float curImageWL = [[info objectForKey:@"curImageWL"] floatValue];
+          float curImageWW = [[info objectForKey:@"curImageWW"] floatValue];
+
+          QStringList imgList;
+          for (NSString *filename in images) {
+            imgList << [filename UTF8String];
+          }
+
+          QMap<QString, QVariant> dict;
+          dict["series"] = QVariant(imgList);
+          dict["curImage"] = QVariant(curImage);
+          dict["curImageWL"] = QVariant(curImageWL);
+          dict["curImageWW"] = QVariant(curImageWW);
+
+          _control->emitSeriesDropped(QVariant(dict));
+        }
+
       }
     }
     

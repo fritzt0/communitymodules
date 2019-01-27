@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,7 +21,6 @@
 		B75093C115BC4ADB001B4E5F /* IndeterminatedProgressController.m in Sources */ = {isa = PBXBuildFile; fileRef = B75093BF15BC4ADB001B4E5F /* IndeterminatedProgressController.m */; };
 		B75093C315BC4AE2001B4E5F /* IndeterminatedProgressWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B75093C215BC4AE2001B4E5F /* IndeterminatedProgressWindow.xib */; };
 		B75FB632112BD0D100D58216 /* mlMeVisLabServicesProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = B75FB631112BD0D100D58216 /* mlMeVisLabServicesProtocol.h */; };
-		B78734EA1453FE6500D2C794 /* OsiriXMeVisLabBridge.osirixplugin in Install Plugin for OsiriX */ = {isa = PBXBuildFile; fileRef = AB5D36050680E57E00F4007A /* OsiriXMeVisLabBridge.osirixplugin */; };
 		B7AB82C5137FF5E600A79F31 /* SendToMeVisLab-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = B7AB82C3137FF5E600A79F31 /* SendToMeVisLab-gray.png */; };
 		B7AB82C6137FF5E600A79F31 /* SendToMeVisLab-red.png in Resources */ = {isa = PBXBuildFile; fileRef = B7AB82C4137FF5E600A79F31 /* SendToMeVisLab-red.png */; };
 		B7BE9B34137FE61100325DF6 /* ToolPopUpButton.h in Headers */ = {isa = PBXBuildFile; fileRef = B7BE9B32137FE61100325DF6 /* ToolPopUpButton.h */; };
@@ -43,17 +42,6 @@
 				B7089B820F9F3F00002412A6 /* OsiriXMeVisLabBridge.osirixplugin in Copy PlugIn to bin */,
 			);
 			name = "Copy PlugIn to bin";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B78734E81453FE1D00D2C794 /* Install Plugin for OsiriX */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 12;
-			dstPath = "$(USER_LIBRARY_DIR)/Application Support/OsiriX/Plugins";
-			dstSubfolderSpec = 0;
-			files = (
-				B78734EA1453FE6500D2C794 /* OsiriXMeVisLabBridge.osirixplugin in Install Plugin for OsiriX */,
-			);
-			name = "Install Plugin for OsiriX";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F3EC5DCB1E3B9D4300BBCD75 /* Install Plugin for Horos */ = {
@@ -204,9 +192,7 @@
 				8D5B49AF048680CD000E48DA /* Resources */,
 				8D5B49B1048680CD000E48DA /* Sources */,
 				8D5B49B3048680CD000E48DA /* Frameworks */,
-				8D5B49B5048680CD000E48DA /* Rez */,
 				B7089B7F0F9F3EC9002412A6 /* Copy PlugIn to bin */,
-				B78734E81453FE1D00D2C794 /* Install Plugin for OsiriX */,
 				F3EC5DCB1E3B9D4300BBCD75 /* Install Plugin for Horos */,
 			);
 			buildRules = (
@@ -215,7 +201,7 @@
 			);
 			name = OsiriXMeVisLabBridge;
 			productInstallPath = "$(HOME)/Library/Bundles";
-			productName = Invert;
+			productName = OsiriXMeVisLabBridge;
 			productReference = AB5D36050680E57E00F4007A /* OsiriXMeVisLabBridge.osirixplugin */;
 			productType = "com.apple.product-type.bundle";
 		};
@@ -228,7 +214,7 @@
 				LastUpgradeCheck = 0910;
 			};
 			buildConfigurationList = CE6A9A9408AC841300D0C1EE /* Build configuration list for PBXProject "OsiriXPlugIn" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -267,16 +253,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXRezBuildPhase section */
-		8D5B49B5048680CD000E48DA /* Rez */ = {
-			isa = PBXRezBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXRezBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		8D5B49B1048680CD000E48DA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -294,7 +270,6 @@
 		B7A0D0421454398F0063448A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -324,6 +299,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				USE_HEADERMAP = NO;
 			};
 			name = Debug;
 		};
@@ -333,10 +309,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -347,10 +320,12 @@
 				GCC_VERSION = "";
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../MLOsiriXServices",
+					"$(SRCROOT)/../MLOsiriXBridge",
+				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "";
-				LIBRARY_SEARCH_PATHS = "";
 				LIBRARY_STYLE = Bundle;
 				MACOSX_DEPLOYMENT_TARGET = "";
 				OTHER_CFLAGS = "";
@@ -376,7 +351,6 @@
 		B7A0D044145439AD0063448A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -403,6 +377,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				SDKROOT = macosx;
+				USE_HEADERMAP = NO;
 			};
 			name = Release;
 		};
@@ -412,10 +387,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUGGING_SYMBOLS = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -426,10 +398,12 @@
 				GCC_VERSION = "";
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../MLOsiriXServices",
+					"$(SRCROOT)/../MLOsiriXBridge",
+				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "";
-				LIBRARY_SEARCH_PATHS = "";
 				LIBRARY_STYLE = Bundle;
 				MACOSX_DEPLOYMENT_TARGET = "";
 				OTHER_CFLAGS = "";

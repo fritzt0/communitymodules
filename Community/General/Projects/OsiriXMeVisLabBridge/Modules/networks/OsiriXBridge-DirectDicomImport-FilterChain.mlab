@@ -424,6 +424,7 @@ module DicomTool {
     echoDebug = FALSE
     storeVerbose = TRUE
     storeDebug = FALSE
+    usedToolSelector = dcmSend
     currentConfigSet = OsiriX
     dicomName = OsiriX
     dicomType = PACS
